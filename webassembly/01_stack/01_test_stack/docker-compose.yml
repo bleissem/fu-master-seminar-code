@@ -1,0 +1,13 @@
+version: '3'
+services:
+  emscripten:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - IMAGE=masterseminarwabt
+    image: webassembly01teststack
+    container_name: webassembly01teststack
+    volumes:
+      - .:/src
+    command: /wabt/build/wat2wasm teststack.wat -o teststack.wasm

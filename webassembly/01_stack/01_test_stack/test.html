@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAssembly Test Stack</title>
+    <script>
+        (function() {
+            fetch('teststack.wasm')
+                .then(response => response.arrayBuffer())
+                .then(bytes => WebAssembly.instantiate(bytes))
+                .then(results => {
+                    const { instance } = results;
+                    const result = instance.exports.teststack();
+                    console.log('Ergebnis:', result);
+                    document.getElementById('result').textContent = 'Ergebnis: ' + result;
+                })
+                .catch(error => console.error('Ein Fehler ist aufgetreten:', error));
+        })();
+    </script>
+</head>
+<body>
+    <h1>WebAssembly Test Stack</h1>
+    <p id="result"></p>
+</body>
+</html>

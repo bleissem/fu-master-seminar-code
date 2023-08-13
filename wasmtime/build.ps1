@@ -1,0 +1,1 @@
+docker build --pull --no-cache --rm -t wasmtime .
