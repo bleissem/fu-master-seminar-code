@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebAssembly Beispiel</title>
+    <script>
+        var wasmModule;
+
+        fetch('incrementx.wasm')
+            .then(response => response.arrayBuffer())
+            .then(bytes => WebAssembly.instantiate(bytes))
+            .then(results => {
+                wasmModule = results.instance;
+                var x = wasmModule.exports.incrementx();
+                document.getElementById('result').textContent = 'Das Ergebnis von x ist: ' + x;
+            })
+            .catch(console.error);
+    </script>
+</head>
+<body>
+    <h1>WebAssembly Beispiel: incrementX</h1>
+    <p id="result"></p>
+</body>
+</html>

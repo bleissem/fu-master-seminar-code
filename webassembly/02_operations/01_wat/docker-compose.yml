@@ -1,0 +1,13 @@
+version: '3'
+services:
+  emscripten:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - IMAGE=masterseminarwabt
+    image: webassembly02
+    container_name: webassembly02
+    volumes:
+      - .:/src
+    command: /wabt/build/wat2wasm incrementx.wat -o incrementx.wasm
