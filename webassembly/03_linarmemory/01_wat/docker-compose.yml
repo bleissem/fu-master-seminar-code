@@ -1,0 +1,13 @@
+version: '3'
+services:
+  emscripten:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - IMAGE=masterseminarwabt
+    image: webassembly03
+    container_name: webassembly03
+    volumes:
+      - .:/src
+    command: /wabt/build/wat2wasm linearmemory.wat -o linearmemory.wasm
