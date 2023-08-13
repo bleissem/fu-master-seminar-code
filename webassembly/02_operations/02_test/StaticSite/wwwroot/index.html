@@ -12,7 +12,7 @@
             .then(bytes => WebAssembly.instantiate(bytes))
             .then(results => {
                 wasmModule = results.instance;
-                var x = wasmModule.exports.incrementx();
+                const x = wasmModule.exports.incrementX();
                 document.getElementById('result').textContent = 'Das Ergebnis von x ist: ' + x;
             })
             .catch(console.error);
